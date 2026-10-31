@@ -73,9 +73,7 @@ cc_library {
         "libcrypto",
         "libhidlbase",
         "libkeymaster4_1support",
-        // The C++ KeyMint implementation actually only supports KeyMint v4, but pretend
-        // it is the latest version to avoid mismatched AIDL versions.
-        "libkeymint_fake_latest",
+        "libkeymint",
         "libkeymint_support",
         "libkeystore2_crypto",
         "libutils",
