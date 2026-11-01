@@ -22,6 +22,67 @@ package {
 }
 
 aidl_interface {
+    name: "android.system.keystore2",
+    vendor_available: true,
+    recovery_available: true,
+    srcs: ["android/system/keystore2/*.aidl"],
+    defaults: ["android.hardware.security.keymint-latest-defaults"],
+    stability: "vintf",
+    backend: {
+        java: {
+            platform_apis: true,
+        },
+        ndk: {
+            apps_enabled: false,
+            min_sdk_version: "30",
+            apex_available: [
+                "//apex_available:platform",
+                "com.android.wifi",
+            ],
+        },
+        rust: {
+            enabled: true,
+            apex_available: [
+                "//apex_available:platform",
+                "com.android.compos",
+            ],
+        },
+    },
+    versions_with_info: [
+        {
+            version: "1",
+            imports: ["android.hardware.security.keymint-V1"],
+        },
+        {
+            version: "2",
+            imports: ["android.hardware.security.keymint-V3"],
+        },
+        {
+            version: "3",
+            imports: ["android.hardware.security.keymint-V3"],
+        },
+        {
+            version: "4",
+            imports: ["android.hardware.security.keymint-V3"],
+        },
+        {
+            version: "5",
+            imports: ["android.hardware.security.keymint-V4"],
+        },
+
+    ],
+    frozen: true,
+
+}
+
+aidl_interface_defaults {
+    name: "android.system.keystore2-latest-defaults",
+    imports: [
+        "android.system.keystore2-V5",
+    ],
+}
+
+aidl_interface {
     name: "android.security.authorization",
     srcs: ["android/security/authorization/*.aidl"],
     defaults: ["android.hardware.security.keymint-latest-defaults"],
